@@ -2,7 +2,7 @@
 
 from typing import Final
 
-from mime_parser.mime_type import PARAMETER_SEPARATOR, MimeType, parse_mime
+from mime_parser.mime.mime_type import PARAMETER_SEPARATOR, MimeType, parse_mime
 
 SINGLE_ANY: Final[str] = "*"
 BOTH_ANY: Final[str] = "*/*"

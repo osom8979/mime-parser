@@ -2,7 +2,7 @@
 
 from typing import Any, Callable, Optional, Union
 
-from mime_parser.mime_type import MimeType
+from mime_parser.mime.mime_type import MimeType
 
 MimeEncoder = Callable[[Any], bytes]
 MimeDecoder = Callable[[bytes], Any]
@@ -21,9 +21,17 @@ class MimeCodec:
             self.mime = mime
         else:
             raise ValueError(f"Invalid `mime` type: {type(mime).__name__}")
-
         self.encoder = encoder
         self.decoder = decoder
+
+    def __repr__(self) -> str:
+        mime = self.mime.mime
+        encoder = self.has_encoder()
+        decoder = self.has_decoder()
+        return f"MimeCodec(mime={mime},encoder={encoder},decoder={decoder})"
+
+    def __str__(self) -> str:
+        return self.mime.mime
 
     def has_encoder(self) -> bool:
         return self.encoder is not None

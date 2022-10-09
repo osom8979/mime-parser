@@ -11,7 +11,7 @@ ENV_SEPARATOR: Final[str] = ":"
 
 DEFAULT_PLUGIN_PREFIX: Final[str] = "mime-parser-"
 
-PLUGIN_ROOT_ATTR: Final[str] = "__mimes__"
+PLUGIN_ROOT_ATTR: Final[str] = "__mime_parser__"
 PLUGIN_MIME_ATTR: Final[str] = "mime"
 PLUGIN_ENCODER_ATTR: Final[str] = "encoder"
 PLUGIN_DECODER_ATTR: Final[str] = "decoder"

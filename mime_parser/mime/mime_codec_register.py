@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from typing import Any, Callable, Dict, Union
+from typing import Any, Dict, Union
 
-from mime_parser.codec.mime_codec import MimeCodec
-
-MimeEncoder = Callable[[Any], bytes]
-MimeDecoder = Callable[[bytes], Any]
+from mime_parser.mime.mime_codec import MimeCodec, MimeDecoder, MimeEncoder
 
 
 class MimeCodecRegister(Dict[str, MimeCodec]):

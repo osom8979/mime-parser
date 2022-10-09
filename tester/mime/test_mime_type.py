@@ -9,7 +9,7 @@ from mime_parser.favorite import (
     MIME_APPLICATION_OCTET_STREAM,
     MIME_TEXT_PLAIN,
 )
-from mime_parser.mime_type import MimeType
+from mime_parser.mime.mime_type import MimeType
 
 
 class MimeTypeTestCase(TestCase):
@@ -44,9 +44,13 @@ class MimeTypeTestCase(TestCase):
     def test_parameters(self):
         xml_mime = MimeType.parse("application/xml;q=0.9")
         self.assertEqual("q=0.9", xml_mime.parameter)
+        self.assertEqual("q", xml_mime.parameter_tuple[0])
+        self.assertEqual("0.9", xml_mime.parameter_tuple[1])
 
         any_mime = MimeType.parse("*/*;q=0.8")
         self.assertEqual("q=0.8", any_mime.parameter)
+        self.assertEqual("q", any_mime.parameter_tuple[0])
+        self.assertEqual("0.8", any_mime.parameter_tuple[1])
 
 
 if __name__ == "__main__":

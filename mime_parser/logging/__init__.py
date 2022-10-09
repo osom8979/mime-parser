@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from logging import getLogger
+from mime_parser.logging.loggers import mime_parser_logger
 
-logger = getLogger("mime_parser")
+logger = mime_parser_logger

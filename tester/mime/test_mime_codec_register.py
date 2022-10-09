@@ -2,7 +2,7 @@
 
 from unittest import TestCase, main
 
-from mime_parser.codec.global_register import global_mime_codec_register
+from mime_parser.global_register import global_mime_codec_register
 
 
 class MimeCodecRegisterTestCase(TestCase):

@@ -23,14 +23,7 @@ def compile_patterns(
     return [compile_pattern(p) for p in patterns]
 
 
-def deny(name: str, patterns: List[Pattern]) -> bool:
-    for p in patterns:
-        if p.match(name) is not None:
-            return True
-    return False
-
-
-def allow(name: str, patterns: List[Pattern]) -> bool:
+def match_patterns(name: str, patterns: List[Pattern]) -> bool:
     for p in patterns:
         if p.match(name) is not None:
             return True
@@ -50,7 +43,7 @@ def access_filter(
     for name in names:
         # The `denies` argument list has high priority.
         if deny_patterns:
-            if deny(name, deny_patterns):
+            if match_patterns(name, deny_patterns):
                 continue
 
         # If the `allows` argument is not defined,
@@ -59,7 +52,7 @@ def access_filter(
             result.append(name)
             continue
 
-        if allow(name, allow_patterns):
+        if match_patterns(name, allow_patterns):
             result.append(name)
             continue
 

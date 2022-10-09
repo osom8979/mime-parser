@@ -2,7 +2,7 @@
 
 from unittest import TestCase, main
 
-from mime_parser.iana import (
+from mime_parser.iana.registered_mime_types import (
     REGISTERED_TYPES,
     TYPE_APPLICATION,
     TYPE_AUDIO,
@@ -18,11 +18,11 @@ from mime_parser.iana import (
 )
 
 
-class IanaTestCase(TestCase):
+class RegisteredMimeTypesTestCase(TestCase):
     def setUp(self) -> None:
         self.types = registered_mime_types()
 
-    def test_registered_mimes(self):
+    def test_registered_mime_types(self):
         self.assertListEqual(list(REGISTERED_TYPES), list(self.types.keys()))
         self.assertLess(0, len(self.types[TYPE_APPLICATION]))
         self.assertLess(0, len(self.types[TYPE_AUDIO]))
