@@ -8,6 +8,7 @@ SINGLE_ANY: Final[str] = "*"
 BOTH_ANY: Final[str] = "*/*"
 
 APPLICATION_OCTET_STREAM: Final[str] = "application/octet-stream"
+APPLICATION_GZIP: Final[str] = "application/gzip"
 APPLICATION_JSON: Final[str] = "application/json"
 APPLICATION_XML: Final[str] = "application/xml"
 APPLICATION_YAML: Final[str] = "application/x-yaml"
@@ -26,6 +27,7 @@ TEXT_PLAIN_UTF8: Final[str] = TEXT_PLAIN + APPEND_CHARSET_UTF8
 MIME_ANY: Final[MimeType] = parse_mime(SINGLE_ANY)
 MIME_ANY_BOTH: Final[MimeType] = parse_mime(BOTH_ANY)
 MIME_APPLICATION_OCTET_STREAM: Final[MimeType] = parse_mime(APPLICATION_OCTET_STREAM)
+MIME_APPLICATION_GZIP: Final[MimeType] = parse_mime(APPLICATION_GZIP)
 MIME_APPLICATION_JSON: Final[MimeType] = parse_mime(APPLICATION_JSON)
 MIME_APPLICATION_XML: Final[MimeType] = parse_mime(APPLICATION_XML)
 MIME_APPLICATION_YAML: Final[MimeType] = parse_mime(APPLICATION_YAML)
