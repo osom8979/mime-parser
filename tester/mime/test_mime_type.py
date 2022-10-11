@@ -26,20 +26,20 @@ class MimeTypeTestCase(TestCase):
     def test_accept(self):
         text_any = MimeType.parse("text/*")
         any_plain = MimeType.parse("*/plain")
-        self.assertTrue(MIME_TEXT_PLAIN.test_from_accepts([text_any]))
-        self.assertTrue(MIME_TEXT_PLAIN.test_from_accepts([any_plain]))
-        self.assertTrue(MIME_TEXT_PLAIN.test_from_accepts([MIME_ANY]))
-        self.assertTrue(MIME_TEXT_PLAIN.test_from_accepts([MIME_ANY_BOTH]))
+        self.assertTrue(MIME_TEXT_PLAIN.accepts([text_any]))
+        self.assertTrue(MIME_TEXT_PLAIN.accepts([any_plain]))
+        self.assertTrue(MIME_TEXT_PLAIN.accepts([MIME_ANY]))
+        self.assertTrue(MIME_TEXT_PLAIN.accepts([MIME_ANY_BOTH]))
 
         text_unknown = MimeType.parse("text/unknown")
         unknown_text = MimeType.parse("unknown/text")
         error_mimes = [text_unknown, text_unknown]
-        self.assertFalse(MIME_TEXT_PLAIN.test_from_accepts([text_unknown]))
-        self.assertFalse(MIME_TEXT_PLAIN.test_from_accepts([unknown_text]))
-        self.assertFalse(MIME_TEXT_PLAIN.test_from_accepts(error_mimes))
+        self.assertFalse(MIME_TEXT_PLAIN.accepts([text_unknown]))
+        self.assertFalse(MIME_TEXT_PLAIN.accepts([unknown_text]))
+        self.assertFalse(MIME_TEXT_PLAIN.accepts(error_mimes))
 
         mixed_mimes = [text_unknown, text_unknown, MIME_ANY]
-        self.assertTrue(MIME_TEXT_PLAIN.test_from_accepts(mixed_mimes))
+        self.assertTrue(MIME_TEXT_PLAIN.accepts(mixed_mimes))
 
     def test_parameters(self):
         xml_mime = MimeType.parse("application/xml;q=0.9")
@@ -51,6 +51,14 @@ class MimeTypeTestCase(TestCase):
         self.assertEqual("q=0.8", any_mime.parameter)
         self.assertEqual("q", any_mime.parameter_tuple[0])
         self.assertEqual("0.8", any_mime.parameter_tuple[1])
+
+    def test_multipart_mixed(self):
+        mime = MimeType.parse("multipart/mixed; boundary=frontier")
+        self.assertEqual("multipart", mime.family)
+        self.assertEqual("mixed", mime.subtype)
+        self.assertEqual("boundary=frontier", mime.parameter)
+        self.assertEqual("boundary", mime.parameter_tuple[0])
+        self.assertEqual("frontier", mime.parameter_tuple[1])
 
 
 if __name__ == "__main__":

@@ -125,30 +125,30 @@ class MimeType:
     def __repr__(self) -> str:
         return self.mime
 
-    def test_from_accept(self, accept: "MimeType") -> bool:
-        if self.family == accept.family:
+    def accept(self, mime: "MimeType") -> bool:
+        if self.family == mime.family:
             pass
-        elif accept.family == ANY_WILDCARD:
+        elif mime.family == ANY_WILDCARD:
             pass
         elif self.family == ANY_WILDCARD:
             pass
         else:
-            assert self.family != accept.family
+            assert self.family != mime.family
             return False
 
-        if self.subtype == accept.subtype:
+        if self.subtype == mime.subtype:
             return True
-        elif accept.subtype == ANY_WILDCARD:
+        elif mime.subtype == ANY_WILDCARD:
             return True
         elif self.subtype == ANY_WILDCARD:
             return True
         else:
-            assert self.subtype != accept.subtype
+            assert self.subtype != mime.subtype
             return False
 
-    def test_from_accepts(self, accepts: List["MimeType"]) -> bool:
-        for accept in accepts:
-            if self.test_from_accept(accept):
+    def accepts(self, mimes: List["MimeType"]) -> bool:
+        for accept in mimes:
+            if self.accept(accept):
                 return True
         return False
 
